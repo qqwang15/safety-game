@@ -63,6 +63,10 @@ class Game {
     // 重置UI
     UI.resetGameUI();
     
+    // 显示加载动画
+    const loadingEl = document.getElementById('levelLoading');
+    loadingEl.classList.add('active');
+    
     // 加载图片并设置隐患点坐标
     this.loadLevelImage(level);
     
@@ -83,11 +87,15 @@ class Game {
    */
   loadLevelImage(level) {
     const gameImage = document.getElementById('gameImage');
+    const loadingEl = document.getElementById('levelLoading');
     
     // 使用占位图（后续替换为真实AI生成图片）
     gameImage.src = level.image || this.generatePlaceholderImage(level);
     
     gameImage.onload = () => {
+      // 隐藏加载动画
+      loadingEl.classList.remove('active');
+      
       // 图片加载完成后计算所有隐患点的实际像素坐标
       this.calculateHazardPositions(level.hazards, gameImage.naturalWidth, gameImage.naturalHeight);
       
@@ -98,6 +106,8 @@ class Game {
     };
     
     gameImage.onerror = () => {
+      // 隐藏加载动画
+      loadingEl.classList.remove('active');
       console.error('图片加载失败:', level.image);
       // 使用纯色背景作为后备
       this.createFallbackBackground(gameImage, level);
@@ -577,3 +587,4 @@ function retryLevel() {
 function nextLevel() {
   game.nextLevel();
 }
+更新
