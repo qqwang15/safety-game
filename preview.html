@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>判定范围预览 - 地面安全第1关</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1a2e; font-family: 'Microsoft YaHei', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+  h1 { color: #fff; font-size: 22px; margin-bottom: 15px; text-align: center; }
+  .container { position: relative; display: inline-block; max-width: 100%; }
+  .container img { width: 500px; height: auto; display: block; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+  /* 判定范围圈 */
+  .hit-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 3px dashed;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .hit-circle::before {
+    content: attr(data-num);
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.9);
+  }
+  .hit-circle::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 700;
+    color: #FFD93D;
+    background: rgba(0,0,0,0.75);
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.65; }
+    50% { opacity: 1; }
+  }
+  .legend { margin-top: 20px; color: #aaa; font-size: 14px; line-height: 2; text-align: center; }
+  .legend span { color: #FFD93D; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>地面安全第1关 - 判定范围预览</h1>
+
+<div class="container">
+  <img src="assets/images/ground/level1.jpg" alt="场景图">
+
+  <!-- ① 插座串联 (21%, 71%) r=9% -->
+  <div class="hit-circle"
+       style="left:21%; top:71%; width:18%; height:18%; border-color:#00FF88; background:rgba(0,255,136,0.08);"
+       data-num="①" data-name="插座串联 r=9%">
+  </div>
+
+  <!-- ② 办公室吸烟 (27%, 48%) r=7% -->
+  <div class="hit-circle"
+       style="left:27%; top:48%; width:14%; height:14%; border-color:#FF6B35; background:rgba(255,107,53,0.08);"
+       data-num="②" data-name="吸烟 r=7%">
+  </div>
+
+  <!-- ③ 消防通道堆杂物 (58%, 54%) r=9% -->
+  <div class="hit-circle"
+       style="left:58%; top:54%; width:18%; height:18%; border-color:#00FF88; background:rgba(0,255,136,0.08);"
+       data-num="③" data-name="消防通道堆杂物 r=9%">
+  </div>
+
+  <!-- ④ 安全出口门上锁 (76%, 55%) r=8% -->
+  <div class="hit-circle"
+       style="left:76%; top:55%; width:16%; height:16%; border-color:#FF6B35; background:rgba(255,107,53,0.08);"
+       data-num="④" data-name="安全出口上锁 r=8%">
+  </div>
+
+  <!-- ⑤ 灭火器过期遮挡 (87%, 84%) r=7% -->
+  <div class="hit-circle"
+       style="left:87%; top:84%; width:14%; height:14%; border-color:#00FF88; background:rgba(0,255,136,0.08);"
+       data-num="⑤" data-name="灭火器 r=7%">
+  </div>
+
+  <!-- ⑥ 电线老化裸露 (67%, 17%) r=8% -->
+  <div class="hit-circle"
+       style="left:67%; top:17%; width:16%; height:16%; border-color:#FF6B35; background:rgba(255,107,53,0.08);"
+       data-num="⑥" data-name="电线老化 r=8%">
+  </div>
+</div>
+
+<div class="legend">
+  <p>圆圈内点击 = 命中 | 圆圈外点击 = 未命中</p>
+  <p>绿色 = 奇数编号 | 橙色 = 偶数编号 | <span>r=xx%</span> = 半径占图片宽度的百分比</p>
+  <p>此页面仅用于预览，<span>不会影响游戏代码</span></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>东航安全找茬王 - AI赋能·安全同行</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 首页 -->
+  <div id="page-home" class="page active">
+    <div class="home-container">
+      <div class="logo-area">
+        <div class="plane-animation">✈️</div>
+        <h1 class="game-title">东航安全找茬王</h1>
+        <p class="game-subtitle">AI 赋能 · 安全同行</p>
+      </div>
+      
+      <div class="home-actions">
+        <button class="btn btn-primary btn-large" onclick="navigateTo('scenes')">
+          🎮 开始挑战
+        </button>
+        <button class="btn btn-text" onclick="showRules()">
+          📖 游戏规则
+        </button>
+      </div>
+      
+      <div class="home-footer">
+        <p>北京分公司安全文化 AI 创作大赛作品</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主题/关卡选择页 -->
+  <div id="page-scenes" class="page">
+    <div class="scenes-container">
+      <header class="scenes-header">
+        <button class="btn btn-back" onclick="navigateTo('home')">← 返回</button>
+        <h2>选择主题与关卡</h2>
+      </header>
+      
+      <div class="themes-grid" id="themesGrid">
+        <!-- 动态生成主题卡片 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 游戏进行页 -->
+  <div id="page-game" class="page">
+    <div class="game-container">
+      <!-- 顶部状态栏 -->
+      <div class="game-header">
+        <div class="stat-item">
+          <span class="stat-icon">⏱️</span>
+          <span id="timerDisplay">70</span>秒
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">🎯</span>
+          <span id="foundDisplay">0</span>/<span id="totalDisplay">5</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-icon">🏆</span>
+          <span id="scoreDisplay">0</span>
+        </div>
+      </div>
+
+      <!-- 游戏图片区域 -->
+      <div class="game-image-wrapper" id="gameImageWrapper">
+        <img id="gameImage" src="" alt="场景图" class="game-image">
+        <div id="markersLayer" class="markers-layer"></div>
+        <div id="scoreFloats" class="score-floats"></div>
+      </div>
+
+      <!-- 底部工具栏 -->
+      <div class="game-footer">
+        <button class="btn btn-hint" id="hintBtn" onclick="useHint()">
+          💡 提示 (<span id="hintsLeft">3</span>)
+        </button>
+        <button class="btn btn-pause" id="pauseBtn" onclick="togglePause()">
+          ⏸️ 暂停
+        </button>
+      </div>
+    </div>
+    
+    <!-- 暂停遮罩 -->
+    <div id="pauseOverlay" class="pause-overlay hidden">
+      <div class="pause-content">
+        <h3>⏸️ 游戏暂停</h3>
+        <button class="btn btn-primary" onclick="togglePause()">继续游戏</button>
+        <button class="btn btn-secondary" onclick="quitGame()">退出本关</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 结算结果页 -->
+  <div id="page-result" class="page">
+    <div class="result-container">
+      <div class="result-header">
+        <h2 id="resultTitle">挑战完成！</h2>
+        <div class="stars-display" id="starsDisplay">
+          <!-- 动态生成星星 -->
+        </div>
+      </div>
+      
+      <div class="score-showcase">
+        <div class="final-score" id="finalScore">0</div>
+        <p class="score-label">最终得分</p>
+      </div>
+      
+      <div class="result-stats">
+        <div class="stat-box">
+          <span class="stat-value" id="resultFound">0</span>
+          <span class="stat-label">找到隐患</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value" id="resultTime">0</span>
+          <span class="stat-label">用时(秒)</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value" id="resultAccuracy">0%</span>
+          <span class="stat-label">正确率</span>
+        </div>
+      </div>
+      
+      <div class="grade-badge" id="gradeBadge">
+        安全新人
+      </div>
+      
+      <!-- 科普卡片区域 -->
+      <div class="knowledge-cards" id="knowledgeCards">
+        <!-- 动态生成科普卡片 -->
+      </div>
+      
+      <div class="result-actions">
+        <button class="btn btn-primary" id="retryBtn" onclick="retryLevel()">🔄 再玩一次</button>
+        <button class="btn btn-success" id="nextLevelBtn" onclick="nextLevel()" hidden>➡️ 下一关</button>
+        <button class="btn btn-secondary" onclick="navigateTo('scenes')">📋 返回选关</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 规则弹窗 -->
+  <div id="rulesModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>📖 游戏规则</h3>
+        <button class="modal-close" onclick="hideRules()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="rule-section">
+          <h4>🎯 游戏目标</h4>
+          <p>在限定时间内，从场景图中找出所有隐藏的<strong>安全隐患点</strong>。</p>
+        </div>
+        <div class="rule-section">
+          <h4>🕐 时间限制</h4>
+          <p>每关有时间限制（55-70秒），时间耗尽即结束。</p>
+        </div>
+        <div class="rule-section">
+          <h4>💰 计分规则</h4>
+          <ul>
+            <li>找到隐患：<strong>+100分</strong></li>
+            <li>通关条件：找到 <strong>70%以上</strong> 隐患点</li>
+          </ul>
+        </div>
+        <div class="rule-section">
+          <h4>⭐ 星级评价</h4>
+          <ul>
+            <li>⭐ 正确率 60%以下</li>
+            <li>⭐⭐ 正确率 60%-75%</li>
+            <li>⭐⭐⭐ 正确率 75%-90%</li>
+            <li>⭐⭐⭐⭐ 正确率 90%-100%</li>
+            <li>⭐⭐⭐⭐⭐ 全部找到！</li>
+          </ul>
+        </div>
+        <div class="rule-section">
+          <h4>💡 提示功能</h4>
+          <p>每关有<strong>有限次提示机会</strong>，使用提示会高亮显示一个未找到的隐患区域。</p>
+        </div>
+        <div class="rule-section">
+          <h4>🔓 关卡解锁</h4>
+          <p>当前开放每个主题第1关体验。<br>更多精彩关卡，敬请期待！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/levels.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
