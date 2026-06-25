@@ -288,6 +288,13 @@ body::before {
   font-size: 13px;
   font-weight: 600;
   z-index: 10;
+  text-align: center;
+}
+
+.home-author {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
 }
 
 /* ========================================
@@ -595,6 +602,56 @@ body::before {
   align-items: center;
   justify-content: center;
   border: 4px solid white;
+}
+
+/* 桌面端图片区域放宽限制 */
+@media (min-width: 1024px) {
+  .game-image-wrapper {
+    max-height: calc(100vh - 160px);
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .game-image-wrapper {
+    max-height: calc(100vh - 140px);
+  }
+}
+
+/* 关卡加载动画 */
+.level-loading {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(248, 250, 252, 0.95);
+  z-index: 20;
+  gap: 16px;
+}
+
+.level-loading.active {
+  display: flex;
+}
+
+.loading-spinner {
+  width: 44px;
+  height: 44px;
+  border: 4px solid #E2E8F0;
+  border-top-color: var(--safety-blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.level-loading p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* 点击波纹效果 */
@@ -1472,3 +1529,4 @@ body::before {
   background: var(--primary-blue);
   color: white;
 }
+更新
