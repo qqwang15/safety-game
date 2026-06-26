@@ -587,4 +587,3 @@ function retryLevel() {
 function nextLevel() {
   game.nextLevel();
 }
-更新
