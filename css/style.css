@@ -385,6 +385,7 @@ body::before {
   font-weight: 900;
   margin-bottom: 4px;
   color: var(--text-primary);
+  white-space: nowrap;
 }
 
 .theme-info p {
@@ -392,6 +393,9 @@ body::before {
   color: var(--text-secondary);
   line-height: 1.4;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .levels-list {
@@ -492,6 +496,10 @@ body::before {
   text-align: center;
   padding: 0 6px;
   font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .level-stars {
@@ -539,16 +547,39 @@ body::before {
 
 .game-header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background: var(--bg-card);
-  padding: 14px 20px;
+  padding: 10px 14px;
   border-radius: var(--radius-md);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   box-shadow: var(--shadow-md);
   border: 2px solid var(--bg-tertiary);
   position: relative;
   overflow: hidden;
+  flex-wrap: nowrap;
+  gap: 4px;
+}
+
+.btn-game-back {
+  background: none;
+  border: 2px solid #E0E0E0;
+  color: var(--text-secondary);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-game-back:hover {
+  background: var(--bg-tertiary);
+  color: var(--primary-blue);
+  border-color: var(--primary-light);
 }
 
 .game-header::before {
@@ -602,6 +633,8 @@ body::before {
   align-items: center;
   justify-content: center;
   border: 4px solid white;
+  touch-action: none;
+  overscroll-behavior: contain;
 }
 
 /* 桌面端图片区域放宽限制 */
@@ -1455,16 +1488,46 @@ body::before {
   }
 
   .theme-header {
-    padding: 10px;
+    padding: 10px 12px;
     gap: 8px;
   }
 
   .theme-icon {
-    font-size: 34px;
+    font-size: 32px;
   }
 
   .theme-info h3 {
+    font-size: 15px;
+  }
+
+  .theme-info p {
+    font-size: 11px;
+  }
+
+  /* 游戏内顶部栏：防止换行 */
+  .game-header {
+    padding: 8px 10px;
+    gap: 2px;
+  }
+
+  .btn-game-back {
+    padding: 4px 10px;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .stat-item {
+    font-size: 13px;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .stat-icon {
     font-size: 16px;
+  }
+
+  #timerDisplay {
+    min-width: 22px;
   }
 
   .levels-list {
@@ -1473,24 +1536,26 @@ body::before {
   }
 
   .level-item {
-    width: 85px;
+    width: 82px;
     border-radius: 10px;
+    gap: 4px;
   }
 
   .level-number {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .level-name {
     font-size: 10px;
+    padding: 0 4px;
   }
 
   .lock-icon {
-    font-size: 26px;
+    font-size: 24px;
   }
 
   .coming-soon {
-    font-size: 9px;
+    font-size: 8px;
     padding: 1px 4px;
   }
   
@@ -1501,6 +1566,49 @@ body::before {
   
   .final-score {
     font-size: 54px;
+  }
+}
+
+/* 超小屏幕：微信内置浏览器等极窄场景 */
+@media (max-width: 360px) {
+  .game-header {
+    padding: 6px 8px;
+    gap: 0;
+  }
+
+  .btn-game-back {
+    padding: 3px 8px;
+    font-size: 12px;
+  }
+
+  .stat-item {
+    font-size: 12px;
+    gap: 2px;
+  }
+
+  .stat-icon {
+    font-size: 14px;
+  }
+
+  .theme-header {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .theme-icon {
+    font-size: 28px;
+  }
+
+  .theme-info h3 {
+    font-size: 14px;
+  }
+
+  .level-item {
+    width: 76px;
+  }
+
+  .level-name {
+    font-size: 9px;
   }
 }
 
