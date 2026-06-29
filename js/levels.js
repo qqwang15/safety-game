@@ -34,7 +34,8 @@ const GAME_CONFIG = {
             {
               id: 'info_1_01',
               name: '人离开工位未锁屏',
-              position: { xPercent: 30, yPercent: 27, radiusPercent: 12 },
+              shape: 'circle',
+              position: { xPercent: 30.36, yPercent: 29.54, radiusPercent: 19.01 },
               correctAction: '离开工位时应立即锁屏（Win+L），防止他人操作电脑或查看敏感信息',
               riskLevel: 'high',
               category: '账号安全',
@@ -43,7 +44,8 @@ const GAME_CONFIG = {
             {
               id: 'info_1_02',
               name: '便签贴明文密码(123456)',
-              position: { xPercent: 20, yPercent: 43, radiusPercent: 8 },
+              shape: 'circle',
+              position: { xPercent: 16.03, yPercent: 46.55, radiusPercent: 7.08 },
               correctAction: '密码绝对不能写在便签上贴在显示器旁，应使用密码管理器安全存储',
               riskLevel: 'high',
               category: '账号安全',
@@ -52,7 +54,8 @@ const GAME_CONFIG = {
             {
               id: 'info_1_03',
               name: '敏感文件随意摆放',
-              position: { xPercent: 8, yPercent: 66, radiusPercent: 7 },
+              shape: 'circle',
+              position: { xPercent: 8.43, yPercent: 60.88, radiusPercent: 10.3 },
               correctAction: '含有敏感信息的纸质文件应锁入文件柜，电子文件应加密存储',
               riskLevel: 'medium',
               category: '文档安全',
@@ -61,7 +64,8 @@ const GAME_CONFIG = {
             {
               id: 'info_1_04',
               name: '手机连接公共WiFi',
-              position: { xPercent: 24, yPercent: 75, radiusPercent: 7 },
+              shape: 'circle',
+              position: { xPercent: 24.22, yPercent: 72.27, radiusPercent: 9.72 },
               correctAction: '公共WiFi不安全，处理敏感信息应使用公司VPN或移动热点，手机不应显示"公共WiFi"',
               riskLevel: 'high',
               category: '网络安全',
@@ -70,7 +74,8 @@ const GAME_CONFIG = {
             {
               id: 'info_1_05',
               name: 'USB设备随意插入主机',
-              position: { xPercent: 84, yPercent: 36, radiusPercent: 7 },
+              shape: 'circle',
+              position: { xPercent: 85.33, yPercent: 35.65, radiusPercent: 7.95 },
               correctAction: '不明的USB设备可能携带病毒，禁止随意插入工作电脑',
               riskLevel: 'high',
               category: '设备安全',
@@ -414,7 +419,8 @@ const GAME_CONFIG = {
             {
               id: 'ground_1_01',
               name: '插座串联（排插接排插）',
-              position: { xPercent: 21, yPercent: 71, radiusPercent: 9 },
+              shape: 'circle',
+              position: { xPercent: 20.94, yPercent: 66.65, radiusPercent: 7.85 },
               correctAction: '严禁插座串联使用，一个固定插座只能连接一个合格排插，避免过载引发火灾',
               riskLevel: 'high',
               category: '用电安全',
@@ -423,7 +429,8 @@ const GAME_CONFIG = {
             {
               id: 'ground_1_02',
               name: '办公室内吸烟（烟头未灭）',
-              position: { xPercent: 27, yPercent: 48, radiusPercent: 7 },
+              shape: 'circle',
+              position: { xPercent: 25.85, yPercent: 47.03, radiusPercent: 6.51 },
               correctAction: '办公区域全面禁烟，烟头必须完全熄灭后投入专用烟灰缸，禁止随手丢弃',
               riskLevel: 'critical',
               category: '消防安全',
@@ -432,7 +439,8 @@ const GAME_CONFIG = {
             {
               id: 'ground_1_03',
               name: '消防通道堆放杂物',
-              position: { xPercent: 58, yPercent: 54, radiusPercent: 9 },
+              shape: 'circle',
+              position: { xPercent: 54.53, yPercent: 49.83, radiusPercent: 8.16 },
               correctAction: '消防通道必须保持畅通无阻，宽度不少于1.2米，严禁堆放纸箱、桌椅等任何物品',
               riskLevel: 'critical',
               category: '消防安全',
@@ -441,7 +449,8 @@ const GAME_CONFIG = {
             {
               id: 'ground_1_04',
               name: '安全出口门上锁',
-              position: { xPercent: 76, yPercent: 55, radiusPercent: 8 },
+              shape: 'circle',
+              position: { xPercent: 76.42, yPercent: 51.92, radiusPercent: 7.06 },
               correctAction: '安全出口门在任何时候都应能从内部轻易推开打开，禁止上锁或用物品堵住',
               riskLevel: 'critical',
               category: '消防安全',
@@ -450,7 +459,8 @@ const GAME_CONFIG = {
             {
               id: 'ground_1_05',
               name: '灭火器过期且被杂物遮挡',
-              position: { xPercent: 87, yPercent: 84, radiusPercent: 7 },
+              shape: 'circle',
+              position: { xPercent: 86.98, yPercent: 81.74, radiusPercent: 15.76 },
               correctAction: '灭火器应每月检查压力表是否在绿色区域，定期更换，且周围0.5米内不得有遮挡物',
               riskLevel: 'high',
               category: '消防安全',
@@ -459,7 +469,8 @@ const GAME_CONFIG = {
             {
               id: 'ground_1_06',
               name: '电线老化破损裸露',
-              position: { xPercent: 67, yPercent: 17, radiusPercent: 8 },
+              shape: 'circle',
+              position: { xPercent: 71.7, yPercent: 13.39, radiusPercent: 21.08 },
               correctAction: '发现电线绝缘层老化、开裂、裸露应立即停止使用并报电工更换，禁止用胶带临时缠绕',
               riskLevel: 'high',
               category: '用电安全',
